@@ -1,0 +1,23 @@
+Ce fichier explique techniquement comment les composants interagissent.
+
+Markdown
+# Architecture du Système 🏗️
+
+Ce document décrit l'infrastructure réseau et logicielle de l'instance Nextcloud sur Raspberry Pi 5.
+
+## Schéma Logique
+Le système repose sur trois couches principales :
+1. **Matériel** : Raspberry Pi 5 avec boot sur SSD NVMe via interface PCIe.
+2. **Conteneurisation/Gestion** : Nextcloud installé via Snap pour l'isolation des dépendances.
+3. **Réseau (Overlay)** : Tailscale crée un tunnel chiffré (VPN Mesh) entre le Pi et les clients distants.
+
+
+
+## Flux de Données
+- **Accès Local** : `http://oscarpi.local` (uniquement via le LAN).
+- **Accès Distant** : Le client (PC/Mobile) active Tailscale -> Connexion directe au nœud du Pi via son IP privée Tailscale (`100.x.y.z`).
+- **Stockage** : Les données sont écrites directement sur le SSD NVMe monté sur `/var/snap/nextcloud/common/nextcloud/data`.
+
+## Sécurité
+- **Chiffrement** : TLS/SSL géré par Nextcloud (interne) et WireGuard (via Tailscale).
+- **Pare-feu** : Aucun port ouvert sur la box internet (NAT traversal).
