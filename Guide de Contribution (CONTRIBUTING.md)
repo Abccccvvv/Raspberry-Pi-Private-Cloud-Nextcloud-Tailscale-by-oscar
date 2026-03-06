@@ -1,0 +1,20 @@
+Indispensable pour montrer que vous savez travailler en équipe.
+
+Markdown
+# Contribuer au Projet 🤝
+
+Merci de l'intérêt que vous portez à ce projet de Cloud Privé ! Voici comment vous pouvez aider.
+
+## Comment contribuer ?
+1. **Signaler un bug** : Ouvrez une "Issue" avec les logs de votre Raspberry Pi (`journalctl -u snap.nextcloud.apache`).
+2. **Proposer une amélioration** : Amélioration des scripts de backup ou de la configuration thermique du Pi 5.
+
+## Processus de Pull Request (PR)
+- Forkez le dépôt.
+- Créez une branche pour votre fonctionnalité (`git checkout -b feature/nom-super-cool`).
+- Commitez vos changements avec des messages clairs (ex: `fix: correction erreur wpa_supplicant`).
+- Ouvrez une PR vers la branche `main`.
+
+## Style de Code
+- Les scripts shell doivent être commentés.
+- La documentation doit être rédigée en Markdown.
