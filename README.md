@@ -45,4 +45,51 @@ Une fois connecté en SSH (`ssh oscar@oscarpi.local`), clonez votre carte SD ver
 # Exemple via l'outil rpi-clone (version Jeff Geerling)
 sudo rpi-clone nvme0n1
 
+Configurez ensuite l'ordre de boot via sudo raspi-config (Advanced Options > Boot Order > NVMe).
 
+3. Installation de Nextcloud
+L'installation se fait via Snap pour une gestion simplifiée des dépendances :
+
+Bash
+sudo apt update && sudo apt upgrade -y
+sudo apt install snapd
+sudo snap install nextcloud
+4. Configuration de Tailscale
+Pour accéder à votre cloud en dehors de votre domicile :
+
+Bash
+curl -fsSL [https://tailscale.com/install.sh](https://tailscale.com/install.sh) | sh
+sudo tailscale up
+Récupérez l'adresse IP Tailscale de votre Pi (ex: 100.x.y.z) sur votre interface d'administration Tailscale.
+
+5. Liaison Nextcloud + Tailscale
+Il est impératif d'ajouter votre IP Tailscale aux domaines de confiance de Nextcloud :
+
+Bash
+sudo nextcloud.occ config:system:set trusted_domains 1 --value=VOTRE_IP_TAILSCALE
+🔧 Dépannage (Logs d'erreurs rencontrées)
+Erreur Wi-Fi (wpa_supplicant)
+Si l'interface wlan0 refuse de se reconfigurer :
+
+Bash
+sudo killall wpa_supplicant
+sudo rm /var/run/wpa_supplicant/wlan0
+sudo systemctl restart NetworkManager
+Erreur de Verrouillage APT
+Si vous recevez l'erreur Could not open lock file /var/lib/dpkg/lock-frontend :
+
+Vérifiez que vous utilisez bien sudo.
+
+Attendez la fin des mises à jour automatiques au démarrage ou redémarrez.
+
+📱 Accès Client
+Installez Tailscale sur votre téléphone/ordinateur.
+
+Connectez-vous au même compte.
+
+Installez l'application Nextcloud et entrez l'adresse IP Tailscale de votre Raspberry Pi.
+
+🔗 Références
+Tuto Vidéo de base : Access Your Files ANYWHERE - Enrique Neyra
+
+Documentation Nextcloud : nextcloud.com
