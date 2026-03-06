@@ -1,0 +1,19 @@
+Montre que vous prenez la protection des données au sérieux.
+
+Markdown
+# Politique de Sécurité 🔒
+
+## Versions Supportées
+| Version | Supportée |
+| :--- | :--- |
+| 1.0.x | ✅ Oui |
+| < 1.0 | ❌ Non |
+
+## Signalement d'une vulnérabilité
+**Ne créez pas d'Issue publique pour une faille de sécurité.**
+Si vous découvrez une faille, merci de m'envoyer un e-mail à : [VOTRE_EMAIL_ICI]. 
+Je m'efforcerai de répondre sous 48 heures.
+
+## Recommandations
+- Activez toujours l'authentification à deux facteurs (2FA) sur votre interface Nextcloud.
+- Ne partagez jamais votre clé d'authentification Tailscale.
